@@ -1,6 +1,7 @@
 .DS_Store
 .vs/
 .vscode/
+.exercism/
 bin/
 obj/
 build/
