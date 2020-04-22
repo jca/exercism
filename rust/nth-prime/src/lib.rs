@@ -12,23 +12,16 @@ pub fn nth(n: u32) -> u32 {
 
 // Given a vector of N prime numbers, find the N+1 number
 fn next(primes: &mut Vec<u32>) {
-    let dividable = |n| {
-        for prime in primes.iter() {
-            // If a number can't be divided by any lower prime number, it's a prime number
-            if n % prime == 0 {
-                return true;
-            }
-        }
-        false
-    };
+    let i: u32 = primes[primes.len() - 1];
 
-    let mut i: u32 = primes[primes.len() - 1];
-
-    loop {
-        i += 1;
-        if !dividable(i) {
-            primes.push(i);
-            break;
-        }
-    }
+    primes.push(
+        (i + 1..)
+            .find(|j| {
+                !primes
+                    .iter()
+                    .take_while(|&&prime| prime * prime <= *j)
+                    .any(|&prime| j % prime == 0)
+            })
+            .unwrap(),
+    );
 }

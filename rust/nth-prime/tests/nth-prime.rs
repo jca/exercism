@@ -19,3 +19,8 @@ fn test_sixth_prime() {
 fn test_big_prime() {
     assert_eq!(np::nth(10_000), 104_743);
 }
+
+#[test]
+fn test_very_big_prime() {
+    assert_eq!(np::nth(1_000_000), 15_485_867);
+}
