@@ -21,7 +21,9 @@ describe("BinarySearch", () => {
     expect(new BinarySearch(sortedArrayOfOddLength).indexOf(2)).toEqual(3)
   })
 
-  xit("should return -1 for a value not in the array", () => {
+  it("should return -1 for a value not in the array", () => {
     expect(new BinarySearch(sortedArray).indexOf(10)).toEqual(-1)
+    expect(new BinarySearch(sortedArrayOfOddLength).indexOf(5)).toEqual(-1)
+    expect(new BinarySearch(sortedArrayOfOddLength).indexOf(-1)).toEqual(-1)
   })
 })

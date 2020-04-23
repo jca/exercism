@@ -12,36 +12,21 @@ export default class BinarySearch {
         }
     }
 
-    public indexOf = (search: number, min: number = 0, max: number = -1): number => {
-        if (this.array === undefined) {
-            return -1;
+    public indexOf = (search: number): number => {
+        return this.array ? this.search(this.array, search, 0, this.array.length - 1) : -1;
+    }
+
+    private search = (array: number[], search: number, min: number, max: number): number => {
+        if (min >= max) {
+            return array[max] === search ? max : -1;
         }
 
-        //1. Ad-hoc behaviour when reaching end of loop
-        const top = max > -1 ? max : this.array.length - 1;
-        if (top <= 1) {
-            switch (search) {
-                case this.array[0]: return 0;
-                case this.array[1]: return 1;
-                default: return -1;
-            }
+        const mid = Math.ceil((min + max) / 2)
+        if (search < array[mid]) {
+            return this.search(array, search, min, mid - 1);
+        } else if (array[mid] < search) {
+            return this.search(array, search, mid + 1, max);
         }
-
-        //2. Check middle value
-        const candidate = Math.ceil((min + top) / 2)
-
-        //3. Recurse through data
-        if (search < this.array[candidate]) {
-            return this.indexOf(search, min, candidate - 1);
-        } else if (this.array[candidate] < search) {
-            return this.indexOf(search, candidate + 1, top);
-        }
-
-        //4. Return first matching value (not expected here)
-        // while (candidate > 0 && this.array[candidate-1] === search) {
-        //     candidate--;
-        // }
-
-        return candidate;
+        return mid;
     }
 }
