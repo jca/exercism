@@ -1,9 +1,11 @@
 pub fn square_of_sum(n: u32) -> u32 {
-    (n*(n+1)/2).pow(2)
+    // (n*(n+1)/2).pow(2)
+    (1..=n).fold(0, |acc, n| acc+n).pow(2)
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
-    n*(n+1)*(2*n+1)/6
+    //n*(n+1)*(2*n+1)/6
+    (1..=n).fold(0, |acc, n| acc+n.pow(2))
 }
 
 pub fn difference(n: u32) -> u32 {
